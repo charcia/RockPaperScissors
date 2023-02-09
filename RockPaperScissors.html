@@ -11,14 +11,32 @@
         </div>
 
         <script>
-            const element1=document.getElementByID("rock");
-            const element2=document.getElementById("paper");
-            const element3=document.getElementById("scissors");
-            function PlayRound(){
+            //Set variables
+            value="";
+            const element1=document.getElementByID("rock");//not added
+            const element2=document.getElementById("paper"); //not added
+            const element3=document.getElementById("scissors"); //not added
+            value=element1.addEventListener("click",()=>{let value=element1.value;return value;alert(value)}); //not added
+            value=element2.addEventListener("click",()=>{let value=element2.value;return value;alert(value)}); //not added
+            value=element3.addEventListener("click",()=>{let value=element3.value;return value;alert(value)});
+            
+            element1.addEventListener("click",test());
+            element2.addEventListener("click",test());
+            element3.addEventListener("click",test());
+            //not added
+            
+            //end of variables
+
+            function test();{
+                alert("It clicked!")
+            }
+
+            function PlayRound(value){
+                alert(value);
                 let win1="rockscissors";
                 let win2="paperrock";
                 let win3="scissorspaper"
-                let PlayerChoice=document.getElementById("input").value;
+                let PlayerChoice=value;
                 let Player=PlayerChoice.toLowerCase();
                 let CompResult=GetComputerChoice();
                 let code=(Player+CompResult);
@@ -31,6 +49,7 @@
                     alert("You lose! "+ CompResult +" beats "+ Player);
                 }
             }
+
             function GetComputerChoice(){
                 let result=RandomPick();
                 if (result===1){
@@ -41,6 +60,7 @@
                     return("scissors");
                 }
             }
+
             function RandomPick(){
                 let max=Math.floor(3);
                 let min=Math.ceil(1);
@@ -49,11 +69,11 @@
         </script>
 
         <div class="content">
-            <input type="text" id="input">
-            <button onclick="PlayRound()">Play!</button>
-            <button id="rock">Rock</button>> //not added to script
-            <button id="paper">Paper</button>> // not added to script
-            <button id="scissors">Scissors</button> //not added to script
+            <!--<input type="text" id="input">need to delete-->
+            <!--<button onclick="PlayRound()">Play!</button>need to delete-->
+            <button id="rock" value="Rock">Rock</button>> <!--not added to script-->
+            <button id="paper" value="Paper">Paper</button>> <!--not added to script-->
+            <button id="scissors" value="Scissors">Scissors</button> <!--not added to script-->
             <p id="result"></p>
         </div>
         
