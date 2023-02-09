@@ -11,6 +11,9 @@
         </div>
 
         <script>
+            const element1=document.getElementByID("rock");
+            const element2=document.getElementById("paper");
+            const element3=document.getElementById("scissors");
             function PlayRound(){
                 let win1="rockscissors";
                 let win2="paperrock";
@@ -48,6 +51,9 @@
         <div class="content">
             <input type="text" id="input">
             <button onclick="PlayRound()">Play!</button>
+            <button id="rock">Rock</button>> //not added to script
+            <button id="paper">Paper</button>> // not added to script
+            <button id="scissors">Scissors</button> //not added to script
             <p id="result"></p>
         </div>
         
