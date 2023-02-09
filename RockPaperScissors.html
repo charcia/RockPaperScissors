@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta charset="utf-8">
+        <title>RockPaperScissors</title>
+    </head>
+
+    <body>
+        <div class="header">
+            <h1>Rock Paper Scissors</h1>
+        </div>
+
+        <script>
+            function PlayRound(){
+                let win1="rockscissors";
+                let win2="paperrock";
+                let win3="scissorspaper"
+                let PlayerChoice=document.getElementById("input").value;
+                let Player=PlayerChoice.toLowerCase();
+                let CompResult=GetComputerChoice();
+                let code=(Player+CompResult);
+                if (code==win1|code==win2|code==win3){
+                    alert("You win! "+ Player +" beats "+ CompResult);
+                } else if (Player==CompResult){
+                    alert("It's a draw! You both have "+ Player);
+                } 
+                else {
+                    alert("You lose! "+ CompResult +" beats "+ Player);
+                }
+            }
+            function GetComputerChoice(){
+                let result=RandomPick();
+                if (result===1){
+                    return("rock");
+                } else if (result===2){
+                    return("paper");
+                } else if (result===3){
+                    return("scissors");
+                }
+            }
+            function RandomPick(){
+                let max=Math.floor(3);
+                let min=Math.ceil(1);
+                return Math.floor(Math.random()*(max-min+1))+min;
+            }
+        </script>
+
+        <div class="content">
+            <input type="text" id="input">
+            <button onclick="PlayRound()">Play!</button>
+            <p id="result"></p>
+        </div>
+        
+        <footer>
+
+        </footer>
+    </body>
+</html>
