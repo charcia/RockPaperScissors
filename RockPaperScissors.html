@@ -10,45 +10,122 @@
             <h1>Rock Paper Scissors</h1>
         </div>
 
+        <button id="myButton1" value='rock'>rock</button>
+        <button id="myButton2" value="paper">paper</button>
+        <button id="myButton3" value="scissors">scissors</button>
+
+        <p id="choice"></p>
+
+        <p id="result"></p>
+
+        <p id="YourScore"></p>
+        <p id="CompScore"></p>
+
+        <p id="FinalResult"><strong></strong>></p>
+
+
         <script>
             //Set variables
-            value="";
-            const element1=document.getElementByID("rock");//not added
-            const element2=document.getElementById("paper"); //not added
-            const element3=document.getElementById("scissors"); //not added
-            value=element1.addEventListener("click",()=>{let value=element1.value;return value;alert(value)}); //not added
-            value=element2.addEventListener("click",()=>{let value=element2.value;return value;alert(value)}); //not added
-            value=element3.addEventListener("click",()=>{let value=element3.value;return value;alert(value)});
+            let RoundResult='';
+            myArray=[];
             
-            element1.addEventListener("click",test());
-            element2.addEventListener("click",test());
-            element3.addEventListener("click",test());
-            //not added
             
-            //end of variables
 
-            function test();{
-                alert("It clicked!")
+            window.addEventListener('load',Score);
+
+
+            function Score(){
+                alert('Page loaded');
+                var YourScore=0;
+                var CompScore=0;
+                document.getElementById('YourScore').innerHTML=("Your score is "+YourScore);
+                document.getElementById('CompScore').innerHTML=("The computer score is "+CompScore);
+                document.getElementById('myButton1').addEventListener('click',test1);
+                document.getElementById('myButton2').addEventListener('click',test2);
+                document.getElementById('myButton3').addEventListener('click',test3);
             }
 
+
+            function test1(){
+                alert('it clicked');
+                /*var RoundResult='';*/
+                var value=document.getElementById('myButton1').value;
+                RoundResult=PlayRound(value);
+                alert(RoundResult);
+                CountScore(RoundResult);
+
+            }
+
+            function test2(){
+                alert('it clicked');
+                /*var RoundResult='';*/
+                var value=document.getElementById('myButton2').value;
+                RoundResult=PlayRound(value);
+                alert(RoundResult);
+                CountScore(RoundResult);
+            }
+
+            function test3(){
+                alert('it clicked');
+                /*var RoundResult='';*/
+                var value=document.getElementById('myButton3').value;
+                RoundResult=PlayRound(value);
+                alert(RoundResult);
+                CountScore(RoundResult);
+            }
+
+            function CountScore(RoundResult){
+                let result=RoundResult;
+                if (result=='player'){
+                    myArray.push('player');
+                } else if(result=='computer'){
+                    myArray.push('computer');
+                }
+                document.getElementById('FinalResult').innerHTML='Winner is '+myArray;
+                var PlayerScore=0;
+                var CompScore=0;
+                for (value of myArray){
+                    if (value=='player'){
+                        PlayerScore+=1;
+                        document.getElementById('YourScore').innerHTML=("Your score is "+PlayerScore);
+                    } else if (value=='computer'){
+                        CompScore+=1;
+                        document.getElementById('CompScore').innerHTML=("The computer score is "+CompScore);
+                    }
+                    if (PlayerScore==5){
+                        document.getElementById('FinalResult').innerHTML='You win the game!'
+                    } else if (CompScore==5){
+                        document.getElementById('FinalResult').innerHTML='The Computer win the game :('
+                    }
+                }
+            }
+
+
             function PlayRound(value){
-                alert(value);
+                document.getElementById('choice').innerHTML='You have chosen '+value;
                 let win1="rockscissors";
                 let win2="paperrock";
                 let win3="scissorspaper"
+                /*let PlayerScore=0;
+                let CompScore=0;
+                let NumRound=0;*/
                 let PlayerChoice=value;
                 let Player=PlayerChoice.toLowerCase();
                 let CompResult=GetComputerChoice();
                 let code=(Player+CompResult);
                 if (code==win1|code==win2|code==win3){
-                    alert("You win! "+ Player +" beats "+ CompResult);
+                    document.getElementById('result').innerHTML=("You win! "+ Player +" beats "+ CompResult);
+                    return ('player');
+
                 } else if (Player==CompResult){
-                    alert("It's a draw! You both have "+ Player);
+                    document.getElementById('result').innerHTML=("It's a draw! You both have "+ Player);
+                    return ('None');
                 } 
                 else {
-                    alert("You lose! "+ CompResult +" beats "+ Player);
+                    document.getElementById('result').innerHTML=("You lose! "+ CompResult +" beats "+ Player);
+                    return ('computer');
                 }
-            }
+            };
 
             function GetComputerChoice(){
                 let result=RandomPick();
@@ -59,23 +136,15 @@
                 } else if (result===3){
                     return("scissors");
                 }
-            }
+            };
 
             function RandomPick(){
                 let max=Math.floor(3);
                 let min=Math.ceil(1);
                 return Math.floor(Math.random()*(max-min+1))+min;
-            }
+            };
         </script>
 
-        <div class="content">
-            <!--<input type="text" id="input">need to delete-->
-            <!--<button onclick="PlayRound()">Play!</button>need to delete-->
-            <button id="rock" value="Rock">Rock</button>> <!--not added to script-->
-            <button id="paper" value="Paper">Paper</button>> <!--not added to script-->
-            <button id="scissors" value="Scissors">Scissors</button> <!--not added to script-->
-            <p id="result"></p>
-        </div>
         
         <footer>
 
